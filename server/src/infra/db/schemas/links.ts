@@ -11,3 +11,6 @@ export const linksSchema = pgTable('links', {
   accessCount: numeric('access_count').notNull().default('0'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+export type Link = typeof linksSchema.$inferSelect
+export type NewLink = typeof linksSchema.$inferInsert

@@ -11,6 +11,8 @@ import {
 
 import { env } from '@/env'
 
+import { routes } from './controllers/routes'
+
 const server = fastify()
 
 server.setValidatorCompiler(validatorCompiler)
@@ -31,6 +33,8 @@ server.register(fastifySwagger, {
 server.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
+
+server.register(routes)
 
 server.setErrorHandler((error, _, reply) => {
   if (hasZodFastifySchemaValidationErrors(error)) {

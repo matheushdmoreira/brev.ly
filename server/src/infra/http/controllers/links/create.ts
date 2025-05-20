@@ -14,7 +14,14 @@ export const createLinksRoute: FastifyPluginAsyncZod = async (app) => {
         operationId: 'crateLink',
         body: z.object({
           originalUrl: z.string().url(),
-          shortUrl: z.string(),
+          shortUrl: z
+            .string()
+            .min(3)
+            .max(20)
+            .regex(
+              /^[a-z0-9]+$/,
+              'Invalid short URL, must contain only lowercase letters and numbers, no spaces or special characters',
+            ),
         }),
         response: {
           201: z.object({

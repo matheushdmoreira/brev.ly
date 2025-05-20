@@ -7,4 +7,5 @@ export interface LinksRepository {
   getAll(): Promise<Link[]>
   incrementAccessCount(linkId: string): Promise<void>
   deleteById(linkId: string): Promise<void>
+  streamAll(): AsyncIterable<Link>
 }

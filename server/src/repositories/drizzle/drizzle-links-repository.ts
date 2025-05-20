@@ -53,4 +53,27 @@ export class DrizzleLinksRepository implements LinksRepository {
   async deleteById(linkId: string): Promise<void> {
     await db.delete(linksSchema).where(eq(linksSchema.id, linkId))
   }
+
+  async *streamAll(): AsyncIterable<Link> {
+    const batchSize = 1000
+    let offset = 0
+
+    while (true) {
+      const batch = await db
+        .select()
+        .from(linksSchema)
+        .limit(batchSize)
+        .offset(offset)
+
+      if (batch.length === 0) {
+        break
+      }
+
+      for (const link of batch) {
+        yield link
+      }
+
+      offset += batchSize
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm'
+import { eq, sql } from 'drizzle-orm'
 
 import { db } from '@/infra/db'
 import { type Link, linksSchema, type NewLink } from '@/infra/db/schemas/links'
@@ -30,6 +30,15 @@ export class DrizzleLinksRepository implements LinksRepository {
     const link = await db.insert(linksSchema).values(data).returning()
 
     return link[0]
+  }
+
+  async incrementAccessCount(linkId: string): Promise<void> {
+    await db
+      .update(linksSchema)
+      .set({
+        accessCount: sql`${linksSchema.accessCount} + 1`,
+      })
+      .where(eq(linksSchema.id, linkId))
   }
 
   async deleteById(linkId: string): Promise<void> {

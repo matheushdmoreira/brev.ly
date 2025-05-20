@@ -8,6 +8,13 @@
       "when": 1747670903141,
       "tag": "0000_flaky_leper_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747749169584,
+      "tag": "0001_huge_warlock",
+      "breakpoints": true
     }
   ]
 }

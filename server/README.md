@@ -8,7 +8,7 @@ Brev.ly app.
 - [x] Deve ser possível deletar um link
 - [ ] Deve ser possível obter a URL original por meio de uma URL encurtada
 - [ ] Deve ser possível listar todas as URL’s cadastradas
-- [ ] Deve ser possível incrementar a quantidade de acessos de um link
+- [x] Deve ser possível incrementar a quantidade de acessos de um link
 - [ ] Deve ser possível exportar os links criados em um CSV
 
 ## RNs (Regras de negócio)

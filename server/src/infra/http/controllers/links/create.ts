@@ -19,7 +19,7 @@ export const createLinksRoute: FastifyPluginAsyncZod = async (app) => {
             .min(3)
             .max(20)
             .regex(
-              /^[a-z0-9]+$/,
+              /^[a-z0-9-]+$/,
               'Invalid short URL, must contain only lowercase letters and numbers, no spaces or special characters',
             ),
         }),

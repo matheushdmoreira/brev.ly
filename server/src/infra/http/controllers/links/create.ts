@@ -11,7 +11,7 @@ export const createLinksRoute: FastifyPluginAsyncZod = async (app) => {
       schema: {
         summary: 'Create link',
         tags: ['links'],
-        operationId: 'crateLink',
+        operationId: 'createLink',
         body: z.object({
           originalUrl: z.string().url(),
           shortUrl: z

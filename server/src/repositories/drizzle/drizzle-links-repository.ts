@@ -6,6 +6,16 @@ import { type Link, linksSchema, type NewLink } from '@/infra/db/schemas/links'
 import type { LinksRepository } from '../links-repository'
 
 export class DrizzleLinksRepository implements LinksRepository {
+  async findById(id: string): Promise<Link | null> {
+    const result = await db
+      .select()
+      .from(linksSchema)
+      .where(eq(linksSchema.id, id))
+      .limit(1)
+
+    return result[0] ?? null
+  }
+
   async findByShortUrl(shortUrl: string): Promise<Link | null> {
     const result = await db
       .select()
@@ -20,5 +30,9 @@ export class DrizzleLinksRepository implements LinksRepository {
     const link = await db.insert(linksSchema).values(data).returning()
 
     return link[0]
+  }
+
+  async deleteById(linkId: string): Promise<void> {
+    await db.delete(linksSchema).where(eq(linksSchema.id, linkId))
   }
 }

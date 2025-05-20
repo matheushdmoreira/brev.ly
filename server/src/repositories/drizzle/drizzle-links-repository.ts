@@ -32,6 +32,15 @@ export class DrizzleLinksRepository implements LinksRepository {
     return link[0]
   }
 
+  async getAll(): Promise<Link[]> {
+    const result = await db
+      .select()
+      .from(linksSchema)
+      .orderBy(linksSchema.createdAt)
+
+    return result
+  }
+
   async incrementAccessCount(linkId: string): Promise<void> {
     await db
       .update(linksSchema)

@@ -18,7 +18,6 @@ COPY . .
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 
 RUN npm run build
-RUN npm run db:generate
 RUN npm prune --production
 
 FROM gcr.io/distroless/nodejs22-debian12 AS deploy

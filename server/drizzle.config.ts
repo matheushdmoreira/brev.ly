@@ -8,5 +8,5 @@ export default {
   },
   dialect: 'postgresql',
   schema: 'src/infra/db/schemas/*',
-  out: 'src/infra/db/migrations',
+  out: 'drizzle/migrations',
 } satisfies Config

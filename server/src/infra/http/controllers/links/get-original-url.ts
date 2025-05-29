@@ -9,7 +9,7 @@ export const getOriginalUrlRoute: FastifyPluginAsyncZod = async (app) => {
     '/links/:shortUrl',
     {
       schema: {
-        summary: 'Get original URL by short URL',
+        summary: 'Get link by short URL',
         tags: ['links'],
         operationId: 'getOriginalUrl',
         params: z.object({
@@ -17,7 +17,10 @@ export const getOriginalUrlRoute: FastifyPluginAsyncZod = async (app) => {
         }),
         response: {
           200: z.object({
-            originalUrl: z.string().url(),
+            link: z.object({
+              id: z.string().uuid(),
+              originalUrl: z.string().url(),
+            }),
           }),
           404: z.object({
             message: z.string(),
@@ -33,7 +36,7 @@ export const getOriginalUrlRoute: FastifyPluginAsyncZod = async (app) => {
 
         const { link } = await getOriginalUrlUseCase.execute(shortUrl)
 
-        return reply.status(200).send({ originalUrl: link.originalUrl })
+        return reply.status(200).send({ link })
       } catch (err) {
         if (err instanceof ResourceNotFoundError) {
           return reply.status(404).send({ message: err.message })

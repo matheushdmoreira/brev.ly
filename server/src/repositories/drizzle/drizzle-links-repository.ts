@@ -1,4 +1,4 @@
-import { eq, sql } from 'drizzle-orm'
+import { desc, eq, sql } from 'drizzle-orm'
 
 import { db } from '@/infra/db'
 import { type Link, linksSchema, type NewLink } from '@/infra/db/schemas/links'
@@ -36,7 +36,7 @@ export class DrizzleLinksRepository implements LinksRepository {
     const result = await db
       .select()
       .from(linksSchema)
-      .orderBy(linksSchema.createdAt)
+      .orderBy(desc(linksSchema.createdAt))
 
     return result
   }
@@ -62,6 +62,7 @@ export class DrizzleLinksRepository implements LinksRepository {
       const batch = await db
         .select()
         .from(linksSchema)
+        .orderBy(desc(linksSchema.createdAt))
         .limit(batchSize)
         .offset(offset)
 

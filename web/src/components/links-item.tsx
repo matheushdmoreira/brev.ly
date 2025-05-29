@@ -49,7 +49,7 @@ export function LinksItem({ link }: LinksItemProps) {
   }
 
   return (
-    <div className="py-4 border-t border-gray-200 last:border-t-0">
+    <div className="py-4 border-t border-gray-200">
       <div className="flex items-center gap-5">
         <div className="flex flex-1 flex-col gap-1">
           <a

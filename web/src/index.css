@@ -14,4 +14,10 @@
   --color-gray-600: #1F2025;
 
   --color-danger: #B12C4D;
+
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-md: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
 }

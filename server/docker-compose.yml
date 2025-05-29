@@ -12,7 +12,8 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
     networks:
-      - brevly
+      - brevly-backend
+      - brevly-db
 
   brevly-app:
     build: .
@@ -31,10 +32,12 @@ services:
       - CLOUDFLARE_BUCKET=$CLOUDFLARE_BUCKET
       - CLOUDFLARE_PUBLIC_URL=$CLOUDFLARE_PUBLIC_URL
     networks:
-      - brevly
+      - brevly-backend
 
 volumes:
   db:
 networks:
-    brevly:
+    brevly-backend:
+      driver: bridge
+    brevly-db:
       driver: bridge
